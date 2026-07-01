@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="logo">name
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="/home">Home</a>
+            </li>
+            <li>
+                <a href="/destination">Destination</a>
+            </li>
+            <li>
+                <a href="/packages">Packages</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+            <li>
+                <a href="/contact">Contact</a>
+            </li>
+            <li>
+                <a href="/login">Login</a>
+            </li>
+            <li>
+                <a href="/signup" class="signup-btn">Signup</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-head">
+            <h2>Discover Your Next Adventure
+            </h2>
+            <p> Explore amazing destination and book unforgettable trips with ease.</p>
+
+        </div>
+        <div class="hero-buttons">
+            <a href="/destination" class="hero-btn">Explore Destination</a>
+            <a href="/booking" class="hero-btn">Book Now </a>
+        </div>
+    </section>
+
+    <!-- trip section -->
+
+    <section class="trip ">
+        <h2> Find Your Perfect Trip</h2>
+        <form class="trip-form ">
+            <div class="input-group ">
+                <label for="destination ">Destination</label>
+                <input type="text " id="destination " placeholder="Enter Your Destination ">
+            </div>
+            <div class="input-group ">
+                <label for="date ">Travel Date</label>
+                <input type="date " id="date ">
+            </div>
+            <div class="input-group ">
+                <label for="travelers ">Travelers</label>
+                <input type="number " id="travelers " min="1 " value="1 ">
+            </div>
+            <button type="submit " class="trip-btn ">
+                Search Trips</button>
+        </form>
+    </section>
+
+    <!-- destination -->
+    <section class="destination ">
+        <h2>Popular Destination
+        </h2>
+        <div class="destination-container ">
+            <div class="card ">
+                <img src=" https://res.cloudinary.com/enchanting/q_70,f_auto,w_800,h_800,c_fill,g_face/enchanting-web/2023/09/Beautiful-beach-at-sunset.-Cola-beach-South-GOA.jpg" alt="Goa ">
+                <div class="card-content ">
+                    <h3>Goa
+                    </h3>
+                    <p class="price ">Starting Form ₹9,999</p>
+                    <p class="rating ">⭐⭐⭐⭐⭐(4.8)</p>
+                    <button>Book Now </button>
+                </div>
+            </div>
+            <div class="card ">
+                <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb7UNh0PmgAmklI-9YKQe6Xabh88ja_D231jbGUoK0PA&s=10" alt="Dubai ">
+                <div class="card-content ">
+                    <h3>Dubai
+                    </h3>
+                    <p class="price ">Starting Form ₹30,999</p>
+                    <p class="rating ">⭐⭐⭐⭐⭐(4.9)</p>
+                    <button>Book Now </button>
+                </div>
+            </div>
+            <div class="card ">
+                <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRalme7DBylIdFkOoZaxMTEXDHggT7K4HmtuNOAJc2D1g&s=10" alt="Monaco ">
+                <div class="card-content ">
+                    <h3>Monaco
+                    </h3>
+                    <p class="price ">Starting Form ₹76,999</p>
+                    <p class="rating ">⭐⭐⭐⭐⭐(4.5)</p>
+                    <button>Book Now </button>
+                </div>
+            </div>
+            <div class="card ">
+                <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwTvkBfCYrmKyLjGF64-OqzjrLwaohvdcQNmkQpv_oiw&s=10" alt="bali ">
+                <div class="card-content ">
+                    <h3>Bali
+                    </h3>
+                    <p class="price ">Starting Form ₹39,999</p>
+                    <p class="rating ">⭐⭐⭐⭐⭐(4.5)</p>
+                    <button>Book Now </button>
+                </div>
+            </div>
+            <div class="card ">
+                <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPMDDK1BX_jKbra9wFsdY-d_MVNa7qrdH0i4enN_7fUg&s=10" alt="paris ">
+                <div class="card-content ">
+                    <h3>Paris
+                    </h3>
+                    <p class="price ">Starting Form ₹50,999</p>
+                    <p class="rating ">⭐⭐⭐⭐⭐(4.8)</p>
+                    <button>Book Now </button>
+                </div>
+            </div>
+            <div class="card ">
+                <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaYQgYc5aJMvGpzGqoHLZeEuc8R6X-JV0UM19McjMaig&s=10" alt="Swizerland ">
+                <div class="card-content ">
+                    <h3>Swizerland
+                    </h3>
+                    <p class="price ">Starting Form ₹66,999</p>
+                    <p class="rating ">⭐⭐⭐⭐⭐(4.7)</p>
+                    <button>Book Now </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- fetured trips.. -->
+    <section class="packages ">
+        <h2> Featured Packages</h2>
+        <div class="package-container ">
+            <div class="package-card ">
+                <h3>Bali Adventures</h3>
+                <p>
+                    <strong>Duration :</strong>7 Days</p>
+                <p>
+                    <strong>Price :</strong> ₹39,999
+                </p>
+                <button>View Details </button>
+            </div>
+            <div class="package-card ">
+                <h3>Dubai Town</h3>
+                <p>
+                    <strong>Duration :</strong>10 Days</p>
+                <p>
+                    <strong>Price :</strong> ₹35,999
+                </p>
+                <button>View Details </button>
+            </div>
+            <div class="package-card ">
+                <h3>Goa Escape</h3>
+                <p>
+                    <strong>Duration :</strong>5 Days</p>
+                <p>
+                    <strong>Price :</strong> ₹15,999
+                </p>
+                <button>View Details </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- why choose us -->
+    <section class="why-us ">
+        <h2> Why Choose Us ?</h2>
+        <div class="feature-container ">
+            <div class="feature-card ">
+                <h3>Best Price</h3>
+                <p>Get the most affortable travel package with no hidden charges.
+                </p>
+            </div>
+            <div class="feature-card ">
+                <h3>Secure Booking</h3>
+                <p>Yourpayments and personal imformationare always protected.
+                </p>
+            </div>
+            <div class="feature-card ">
+                <h3>24/7 Support</h3>
+                <p>Oursupprt team is available anytimeto assist you.
+                </p>
+            </div>
+            <div class="feature-card ">
+                <h3>Verified Hotels</h3>
+                <p>Stay at trusted and highly rated hotels worldwide.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- travel statics -->
+
+    <section class="stats ">
+        <h2>Our Achievements</h2>
+        <div class="stats-container ">
+            <div class="stats-card ">
+                <h3>10000+</h3>
+                <p>Travelers</p>
+            </div>
+            <div class="stats-card ">
+                <h3>500+</h3>
+                <p>Destination</p>
+            </div>
+            <div class="stats-card ">
+                <h3>50+</h3>
+                <p>Countries</p>
+            </div>
+            <div class="stats-card ">
+                <h3>95%</h3>
+                <p>Satisfaction</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- call to action -->
+    <section class="cta ">
+        <div class="cta-container ">
+            <h2> Ready for Your Next Journey?</h2>
+            <p>Explore amazing destinations, discover exciting packages, and create unforgettable memories with us.</p>
+            <a href="/booking " class="cta-btn ">Book Your trip Today</a>
+        </div>
+    </section>
+    <!-- footer -->
+    <footer class="footer ">
+        <div class="footer-container ">
+            <div class="footer-section ">
+                <h3>name</h3>
+                <p> Discover amazing destinations and book unforgettable journeys with ease.
+                </p>
+            </div>
+            <div class="footer-section ">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/ ">Home</a></li>
+                    <li><a href="/destination ">Destination</a></li>
+                    <li><a href="/booking ">Book Trip</a></li>
+                    <li><a href="/contact ">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section ">
+                <h3>Contact Us</h3>
+                <p>📍 Nagpur, Maharashtra</p>
+                <p>📧 support@name.com</p>
+                <p>📞 +91 98765 43210</p>
+            </div>
+
+            <!-- Social Media -->
+            <div class="footer-section ">
+                <h3>Follow Us</h3>
+
+                <div class="social-icons ">
+                    <a href="# "><i class="fa-brands fa-facebook-f "></i></a>
+
+                    <a href="# "><i class="fa-brands fa-instagram "></i></a>
+
+                    <a href="# "><i class="fa-brands fa-twitter "></i></a>
+
+                    <a href="# "><i class="fa-brands fa-linkedin-in "></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom ">
+            <p>
+                © 2026 name. All Rights Reserved.
+            </p>
+        </div>
+
+    </footer>
+</body>
+
+</html>
+
+</html>

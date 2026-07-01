@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/destinations">Destination</a></li>
+            <li><a href="/packages">Packages</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup" class="signup-btn">Signup</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h2>TravelEase
+            </h2>
+            <ul>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/my_booking">My Bookings</a></li>
+                <li><a href="/destination">Destinations</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </aside>
+        <main class="dashboard-container">
+            <div class="dashboard-header">
+                <div>
+                    <h1> welcome Back ,{{ username}} 👋</h1>
+                    </h1>
+                    <p>Manage your trips and bookings from your dashboard.</p>
+                </div>
+                <button class="new-booking-btn">+ New Booking</button>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h2>12
+                    </h2>
+                    <p>Total Trips
+                    </p>
+                </div>
+                <div class="stat-card">
+                    <h2>3
+                    </h2>
+                    <p>Upcoming Trips
+                    </p>
+
+
+                </div>
+                <div class="stat-card">
+                    <h2>9
+                    </h2>
+                    <p>Completed Trips
+                    </p>
+                </div>
+                <div class="stat-card">
+                    <h2>₹1.2L
+                    </h2>
+                    <p>Total Spending
+                    </p>
+                </div>
+            </div>
+            <div class="booking-table">
+
+                <h2>Recent Bookings</h2>
+
+                <table>
+
+                    <tr>
+                        <th>Destination</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+
+                    <tr>
+                        <td>Goa</td>
+                        <td>12 Aug 2026</td>
+                        <td>Confirmed</td>
+                    </tr>
+
+                    <tr>
+                        <td>Dubai</td>
+                        <td>25 Sep 2026</td>
+                        <td>Pending</td>
+                    </tr>
+
+                    <tr>
+                        <td>Bali</td>
+                        <td>10 Oct 2026</td>
+                        <td>Confirmed</td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </main>
+    </div>
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-section">
+                <h3>TravelEase</h3>
+                <p>
+                    Discover amazing destinations and create unforgettable journeys.
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/destinations">Destinations</a></li>
+                    <li><a href="/booking">Booking</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+
+                <p>📍 Nagpur, Maharashtra</p>
+                <p>📧 support@travelease.com</p>
+                <p>📞 +91 98765 43210</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 TravelEase. All Rights Reserved.</p>
+        </div>
+
+    </footer>
+</body>
+
+</html>

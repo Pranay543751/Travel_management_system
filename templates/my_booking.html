@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my_booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+
+<body>
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>TravelEase</h2>
+
+            <ul>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/my-bookings">My Bookings</a></li>
+                <li><a href="/destination">Destinations</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </aside>
+        <main class="booking-content">
+            <div class="booking-header">
+                <h1>My Booking
+                </h1>
+                <p>View and manage all your travel bookings.</p>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="search Destination .....">
+                <button>Search</button>
+            </div>
+
+
+            <div class="booking-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Destination</th>
+                            <th>Date</th>
+                            <th>Travelers</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Goa</td>
+                            <td>12 Aug 2026</td>
+                            <td>2</td>
+                            <td>₹9,999</td>
+                            <td>
+                                <span class="confirmed">Confirmed</span></td>
+                            <td>
+                                <button class="view-btn">View</button>
+                                <button class="cancel-btn">Cancel</button> </td>
+                        </tr>
+                        <tr>
+                            <td>Dubai</td>
+                            <td>25 Sep 2026</td>
+                            <td>4</td>
+                            <td>₹30,999</td>
+                            <td><span class="pending">Pending</span></td>
+                            <td>
+                                <button class="view-btn">View</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Bali</td>
+                            <td>10 Oct 2026</td>
+                            <td>3</td>
+                            <td>₹39,999</td>
+                            <td><span class="confirmed">Confirmed</span></td>
+                            <td>
+                                <button class="view-btn">View</button>
+                                <button class="cancel-btn">Cancel</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+
+</html>

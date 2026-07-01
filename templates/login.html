@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - TravelEase</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/destinations">Destinations</a></li>
+            <li><a href="/booking">Booking</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup" class="signup-btn">Signup</a></li>
+        </ul>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="login">
+        <div class="login-container">
+
+            <div class="login-left">
+                <h2>Welcome Back 👋</h2>
+                <p>
+                    Login to manage your bookings, explore destinations, and continue your travel journey.
+                </p>
+            </div>
+
+            <div class="login-right">
+
+                <form action="/login" method="POST">
+
+                    <h2>Login</h2>
+
+                    <div class="input-box">
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+
+                    <div class="remember">
+                        <input type="checkbox">
+                        <span>Remember Me</span>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        Login
+                    </button>
+
+                    <p class="signup-link">
+                        Don't have an account?
+                        <a href="/signup">Signup</a>
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-section">
+                <h3>TravelEase</h3>
+                <p>
+                    Discover amazing destinations and create unforgettable journeys.
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/destinations">Destinations</a></li>
+                    <li><a href="/booking">Booking</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+
+                <p>📍 Nagpur, Maharashtra</p>
+                <p>📧 support@travelease.com</p>
+                <p>📞 +91 98765 43210</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 TravelEase. All Rights Reserved.</p>
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

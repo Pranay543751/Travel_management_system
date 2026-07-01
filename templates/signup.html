@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - TravelEase</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/destinations">Destinations</a></li>
+            <li><a href="/booking">Booking</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Signup Section -->
+    <section class="signup">
+
+        <div class="signup-container">
+
+            <div class="signup-left">
+                <h2>Start Your Journey ✈️</h2>
+                <p>Create an account and unlock amazing travel experiences.</p>
+            </div>
+
+            <div class="signup-right">
+
+                <form action="/signup" method="POST">
+
+                    <h2>Create Account</h2>
+
+                    <div class="input-box">
+                        <label>Full Name</label>
+                        <input type="text" name="name" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Confirm Password</label>
+                        <input type="password" name="confirm_password" required>
+                    </div>
+
+                    <button type="submit" class="signup-btn-form">
+                        Create Account
+                    </button>
+
+                    <p class="login-link">
+                        Already have an account?
+                        <a href="/login">Login</a>
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>© 2026 TravelEase. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

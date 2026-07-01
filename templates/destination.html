@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>destination</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/destinations">Destination</a></li>
+            <li><a href="/packages">Packages</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup" class="signup-btn">Signup</a></li>
+        </ul>
+    </nav>
+    <section class="destination-banner">
+        <div class="banner-content">
+            <h1>Explore Amazing Destination</h1>
+            <p>Discover theWorld'sMost Beutiful Places and plan your next adventure.
+            </p>
+        </div>
+    </section>
+    <section class="destination-search">
+        <input type="text" placeholder="Search destination...">
+        <button>Search</button>
+    </section>
+    <section class="filters">
+        <button>All</button>
+        <button>Beach</button>
+        <button>Mountain</button>
+        <button>City</button>
+        <button>Honeymoon</button>
+    </section>
+    <section class="destination-list">
+
+        <h2>Popular Destinations</h2>
+
+        <div class="destination-container">
+
+            <!-- Goa -->
+            <div class="card">
+                <img src=" https://res.cloudinary.com/enchanting/q_70,f_auto,w_800,h_800,c_fill,g_face/enchanting-web/2023/09/Beautiful-beach-at-sunset.-Cola-beach-South-GOA.jpg" alt="Goa">
+
+                <div class="card-content">
+                    <h3>Goa</h3>
+                    <p class="country">India</p>
+                    <p class="rating">⭐⭐⭐⭐⭐ 4.8</p>
+                    <p class="price">Starting From ₹9,999</p>
+                    <p>Beautiful beaches, nightlife and water sports.</p>
+                    <button>Book Now</button>
+                </div>
+            </div>
+
+            <!-- Dubai -->
+            <div class="card">
+                <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb7UNh0PmgAmklI-9YKQe6Xabh88ja_D231jbGUoK0PA&s=10" alt="Dubai">
+
+                <div class="card-content">
+                    <h3>Dubai</h3>
+                    <p class="country">UAE</p>
+                    <p class="rating">⭐⭐⭐⭐⭐ 4.9</p>
+                    <p class="price">Starting From ₹30,999</p>
+                    <p>Luxury lifestyle, skyscrapers and desert safari.</p>
+                    <button>Book Now</button>
+                </div>
+            </div>
+
+            <!-- Paris -->
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPMDDK1BX_jKbra9wFsdY-d_MVNa7qrdH0i4enN_7fUg&s=10" alt="Paris">
+
+                <div class="card-content">
+                    <h3>Paris</h3>
+                    <p class="country">France</p>
+                    <p class="rating">⭐⭐⭐⭐⭐ 4.8</p>
+                    <p class="price">Starting From ₹50,999</p>
+                    <p>Experience romance and iconic landmarks.</p>
+                    <button>Book Now</button>
+                </div>
+            </div>
+
+            <!-- Bali -->
+            <div class="card">
+                <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwTvkBfCYrmKyLjGF64-OqzjrLwaohvdcQNmkQpv_oiw&s=10" alt="Bali">
+
+                <div class="card-content">
+                    <h3>Bali</h3>
+                    <p class="country">Indonesia</p>
+                    <p class="rating">⭐⭐⭐⭐⭐ 4.7</p>
+                    <p class="price">Starting From ₹39,999</p>
+                    <p>Tropical paradise with beautiful beaches.</p>
+                    <button>Book Now</button>
+                </div>
+            </div>
+
+            <!-- Switzerland -->
+            <div class="card">
+                <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaYQgYc5aJMvGpzGqoHLZeEuc8R6X-JV0UM19McjMaig&s=10" alt="Switzerland">
+
+                <div class="card-content">
+                    <h3>Switzerland</h3>
+                    <p class="country">Switzerland</p>
+                    <p class="rating">⭐⭐⭐⭐⭐ 5.0</p>
+                    <p class="price">Starting From ₹66,999</p>
+                    <p>Snowy mountains and breathtaking landscapes.</p>
+                    <button>Book Now</button>
+                </div>
+            </div>
+
+            <!-- Maldives -->
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ65WM-OeXTCyYcaQ5PJV1XGhDiQXlE2OMfiLUTjxra0g&s=10" alt="Maldives">
+
+                <div class="card-content">
+                    <h3>Maldives</h3>
+                    <p class="country">Maldives</p>
+                    <p class="rating">⭐⭐⭐⭐⭐ 4.9</p>
+                    <p class="price">Starting From ₹59,999</p>
+                    <p>Luxury resorts and crystal-clear waters.</p>
+                    <button>Book Now</button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Pagination -->
+    <section class="pagination">
+        <button>Previous</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>Next</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>© 2026 TravelEase. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

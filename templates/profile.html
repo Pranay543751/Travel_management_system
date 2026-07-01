@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <h2>TravelEase</h2>
+
+            <ul>
+                <li><a href="/dashboard">🏠 Dashboard</a></li>
+                <li><a href="/my-bookings">📖 My Bookings</a></li>
+                <li><a href="/destinations">🌍 Destinations</a></li>
+                <li><a href="/profile">👤 Profile</a></li>
+                <li><a href="/logout">🚪 Logout</a></li>
+            </ul>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="profile-content">
+
+            <div class="profile-header">
+                <h1>My Profile 👤</h1>
+                <p>Manage your personal information.</p>
+            </div>
+
+            <div class="profile-card">
+
+                <div class="profile-image">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile">
+                    <p class="member-badge">Premium Traveler </p>
+                </div>
+
+                <div class="profile-details">
+
+                    <h2>Pranay Zade</h2>
+
+                    <div class="detail-box">
+                        <strong>Email:</strong>
+                        <span>pranay@email.com</span>
+                    </div>
+
+                    <div class="detail-box">
+                        <strong>Phone:</strong>
+                        <span>+91 9876543210</span>
+                    </div>
+
+                    <div class="detail-box">
+                        <strong>Location:</strong>
+                        <span>Nagpur, Maharashtra</span>
+                    </div>
+
+                    <div class="detail-box">
+                        <strong>Member Since:</strong>
+                        <span>2026</span>
+                    </div>
+
+                    <button class="edit-btn">
+                    Edit Profile
+                </button>
+
+                </div>
+
+            </div>
+
+            <!-- Travel Stats -->
+
+            <div class="profile-stats">
+
+                <div class="profile-stat-card">
+                    <h2>12</h2>
+                    <p>Total Trips</p>
+                </div>
+
+                <div class="profile-stat-card">
+                    <h2>5</h2>
+                    <p>Countries Visited</p>
+                </div>
+
+                <div class="profile-stat-card">
+                    <h2>3</h2>
+                    <p>Upcoming Trips</p>
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
