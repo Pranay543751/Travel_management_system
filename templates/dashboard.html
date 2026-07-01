@@ -44,13 +44,13 @@
             </div>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <h2>12
+                    <h2>{{ total_trips }}
                     </h2>
                     <p>Total Trips
                     </p>
                 </div>
                 <div class="stat-card">
-                    <h2>3
+                    <h2>{{ upcoming }}
                     </h2>
                     <p>Upcoming Trips
                     </p>
@@ -58,7 +58,7 @@
 
                 </div>
                 <div class="stat-card">
-                    <h2>9
+                    <h2>{{ completed }}
                     </h2>
                     <p>Completed Trips
                     </p>
@@ -70,39 +70,43 @@
                     </p>
                 </div>
             </div>
-            <div class="booking-table">
+            <section class="recent-bookings">
 
                 <h2>Recent Bookings</h2>
 
                 <table>
 
-                    <tr>
-                        <th>Destination</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                    </tr>
+                    <thead>
 
-                    <tr>
-                        <td>Goa</td>
-                        <td>12 Aug 2026</td>
-                        <td>Confirmed</td>
-                    </tr>
+                        <tr>
+                            <th>Destination</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
 
-                    <tr>
-                        <td>Dubai</td>
-                        <td>25 Sep 2026</td>
-                        <td>Pending</td>
-                    </tr>
+                    </thead>
 
-                    <tr>
-                        <td>Bali</td>
-                        <td>10 Oct 2026</td>
-                        <td>Confirmed</td>
-                    </tr>
+                    <tbody>
+
+                        {% for booking in recent_bookings %}
+
+                        <tr>
+
+                            <td>{{ booking[0] }}</td>
+
+                            <td>{{ booking[1] }}</td>
+
+                            <td>{{ booking[2] }}</td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
 
                 </table>
 
-            </div>
+            </section>
         </main>
     </div>
     <footer class="footer">

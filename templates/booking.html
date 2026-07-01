@@ -42,7 +42,7 @@
                 </div>
                 <div class="input-box">
                     <label>Destination</label>
-                    <select name="destination">
+                    <select name="destination" required>
                         <option>Goa</option>
                          <option>Dubai</option>
                           <option>bali</option>
@@ -53,16 +53,16 @@
                 </div>
                 <div class="input-box">
                     <label> Travel Date</label>
-                    <input type="date" name="travel_date">
+                    <input type="date" name="travel_date" required>
                 </div>
                 <div class="input-box">
                     <label> Number of travelers</label>
-                    <input type="number" name="travelers" min="1" value="1">
+                    <input type="number" name="travelers" min="1" value="1" required>
 
                 </div>
                 <div class="input-box">
                     <label> Package Type</label>
-                    <select name="package">
+                    <select name="package" required>
                         <option>Basic</option>
                         <option>Premium</option>
                         <option>Luxury</option>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="input-box">
                     <label>Special Requests</label>
-                    <textarea rows="5" name="message"></textarea>
+                    <textarea rows="5" name="message" required></textarea>
                 </div>
 
                 <button type="submit" class="booking-btn">

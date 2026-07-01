@@ -50,39 +50,20 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for booking in bookings %}
                         <tr>
-                            <td>Goa</td>
-                            <td>12 Aug 2026</td>
-                            <td>2</td>
-                            <td>₹9,999</td>
-                            <td>
-                                <span class="confirmed">Confirmed</span></td>
-                            <td>
-                                <button class="view-btn">View</button>
-                                <button class="cancel-btn">Cancel</button> </td>
-                        </tr>
-                        <tr>
-                            <td>Dubai</td>
-                            <td>25 Sep 2026</td>
-                            <td>4</td>
-                            <td>₹30,999</td>
-                            <td><span class="pending">Pending</span></td>
-                            <td>
-                                <button class="view-btn">View</button>
+                            <td>{{ booking[0] }}</td>
+                            <td>{{ booking[1] }}</td>
+                            <td>{{ booking[2] }}</td>
+                            <td>{{ booking[3] }}</td>
+                            <td>₹{{ booking[4] }}</td>
+                            <td>{{ booking[5] }}</td>
+                            <td>{% if booking[5] != "Cancelled" %}
+                                <a href="/cancel-booking/{{ booking[0] }}" class="cancel-btn"> Cancel</a> {% else %}
+                                <span class="cancelled">Cancelled</span> {% endif %}
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>Bali</td>
-                            <td>10 Oct 2026</td>
-                            <td>3</td>
-                            <td>₹39,999</td>
-                            <td><span class="confirmed">Confirmed</span></td>
-                            <td>
-                                <button class="view-btn">View</button>
-                                <button class="cancel-btn">Cancel</button>
-                            </td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

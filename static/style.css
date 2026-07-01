@@ -1301,3 +1301,52 @@ table th {
     font-weight: 600;
     transition: 0.3s ease;
 }
+
+.recent-bookings {
+    width: 90%;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+}
+
+.recent-bookings table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent-bookings th {
+    background: #1e3c72;
+    color: white;
+    padding: 15px;
+}
+
+.recent-bookings td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.recent-bookings tr:hover {
+    background: #f5f5f5;
+}
+
+.cancel-btn {
+    background: #ff4d4d;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.cancel-btn:hover {
+    background: #d63031;
+}
+
+.cancelled {
+    color: red;
+    font-weight: bold;
+}
