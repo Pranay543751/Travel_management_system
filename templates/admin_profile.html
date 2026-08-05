@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <h2>TravelHub</h2>
+
+            <ul>
+
+                <li><a href="/admin-dashboard">Dashboard</a></li>
+
+                <li><a href="/manage-users">Manage Users</a></li>
+
+                <li><a href="/manage-bookings">Manage Bookings</a></li>
+
+                <li><a href="/contact-messages">Contact Messages</a></li>
+
+                <li><a href="/admin-profile">Admin Profile</a></li>
+
+                <li><a href="/admin-logout">Logout</a></li>
+
+            </ul>
+
+        </aside>
+
+        <!-- Main -->
+
+        <main class="profile-content">
+
+            <div class="profile-card">
+
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="profile-img">
+
+                <h2>{{ admin[1] }}</h2>
+
+                <p>Administrator</p>
+
+                <hr>
+
+                <div class="profile-info">
+
+                    <h3>Name</h3>
+                    <p>{{ admin[1] }}</p>
+
+                    <h3>Email</h3>
+                    <p>{{ admin[2] }}</p>
+
+                </div>
+
+                <br>
+
+                <a href="/change-admin-password" class="edit-btn">
+               Change Password
+            </a>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <h2>TravelHub</h2>
+
+            <ul>
+
+                <li><a href="/admin-dashboard">Dashboard</a></li>
+
+                <li><a href="/manage-users">Manage Users</a></li>
+
+                <li><a href="/manage-bookings">Manage Bookings</a></li>
+
+                <li><a href="/contact-messages">Contact Messages</a></li>
+
+                <li><a href="/admin-profile">Admin Profile</a></li>
+
+                <li><a href="/admin-logout">Logout</a></li>
+
+            </ul>
+
+        </aside>
+
+        <!-- Main -->
+
+        <main class="dashboard-content">
+
+            <div class="dashboard-header">
+
+                <h1>Admin Dashboard</h1>
+
+                <p>
+                    Welcome,
+                    <strong>{{ session['admin_name'] }}</strong>
+                </p>
+
+            </div>
+
+            <!-- Cards -->
+
+            <div class="stats">
+
+                <div class="card">
+                    <h3>Total Users</h3>
+                    <h2>{{ total_users }}</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Total Bookings</h3>
+                    <h2>{{ total_bookings }}</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Total Revenue</h3>
+                    <h2>₹{{ revenue }}</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Messages</h3>
+                    <h2>{{ total_messages }}</h2>
+                </div>
+
+            </div>
+
+            <!-- Recent Bookings -->
+
+            <div class="recent-bookings">
+
+                <h2>Recent Bookings</h2>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Destination</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for booking in recent_bookings %}
+
+                        <tr>
+
+                            <td>{{ booking[0] }}</td>
+                            <td>{{ booking[1] }}</td>
+                            <td>{{ booking[2] }}</td>
+                            <td>{{ booking[3] }}</td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Booking</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="edit-container">
+
+        <h2>Edit Booking</h2>
+
+        <form method="POST">
+
+            <div class="input-box">
+                <label>Destination</label>
+                <input type="text" value="{{ booking[0] }}" readonly>
+            </div>
+
+            <div class="input-box">
+                <label>Travel Date</label>
+                <input type="date" name="travel_date" value="{{ booking[1] }}" required>
+            </div>
+
+            <div class="input-box">
+                <label>Travelers</label>
+                <input type="number" name="travelers" value="{{ booking[2] }}" min="1" required>
+            </div>
+
+            <div class="input-box">
+                <label>Package</label>
+
+                <select name="package">
+
+                <option {% if booking[3]=="Basic" %}selected{% endif %}>
+                    Basic
+                </option>
+
+                <option {% if booking[3]=="Premium" %}selected{% endif %}>
+                    Premium
+                </option>
+
+                <option {% if booking[3]=="Luxury" %}selected{% endif %}>
+                    Luxury
+                </option>
+
+            </select>
+
+            </div>
+
+            <button class="booking-btn">
+            Update Booking
+        </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

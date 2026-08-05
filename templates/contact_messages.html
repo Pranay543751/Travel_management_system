@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Contact Messages</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+
+            <h2>TravelEase</h2>
+
+            <ul>
+
+                <li><a href="/admin-dashboard">Dashboard</a></li>
+
+                <li><a href="/manage-users">Manage Users</a></li>
+
+                <li><a href="/manage-bookings">Manage Bookings</a></li>
+
+                <li><a href="/contact-messages">Contact Messages</a></li>
+
+                <li><a href="/admin-profile">Admin Profile</a></li>
+
+                <li><a href="/admin-logout">Logout</a></li>
+
+            </ul>
+
+        </aside>
+
+        <main class="dashboard-content">
+
+            <h1>Contact Messages</h1>
+
+            <table class="user-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Subject</th>
+
+                        <th>Message</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for msg in messages %}
+
+                    <tr>
+
+                        <td>{{ msg[0] }}</td>
+
+                        <td>{{ msg[1] }}</td>
+
+                        <td>{{ msg[2] }}</td>
+
+                        <td>{{ msg[3] }}</td>
+
+                        <td>{{ msg[4] }}</td>
+
+                        <td>
+
+                            <a href="/delete-message/{{ msg[0] }}" class="cancel-btn" onclick="return confirm('Delete this message?')">
+
+                        Delete
+
+                    </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

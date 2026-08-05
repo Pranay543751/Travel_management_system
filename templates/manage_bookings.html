@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <h2>TravelHub</h2>
+
+        <ul>
+
+            <li><a href="/admin-dashboard">Dashboard</a></li>
+
+            <li><a href="/manage-users">Manage Users</a></li>
+
+            <li><a href="/manage-bookings">Manage Bookings</a></li>
+
+            <li><a href="/contact-messages">Contact Messages</a></li>
+
+            <li><a href="/admin-profile">Admin Profile</a></li>
+
+            <li><a href="/admin-logout">Logout</a></li>
+
+        </ul>
+
+    </aside>
+    <main class="manage-bookings">
+
+        <h2>Manage Bookings</h2>
+        <form method="GET">
+
+            <input type="text" name="search" placeholder="Search Destination">
+
+            <button>
+
+Search
+
+</button>
+
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User ID</th>
+                    <th>Destination</th>
+                    <th>Date</th>
+                    <th>Travelers</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for booking in bookings %}
+
+                <tr>
+
+                    <td>{{ booking[0] }}</td>
+                    <td>{{ booking[1] }}</td>
+                    <td>{{ booking[2] }}</td>
+                    <td>{{ booking[3] }}</td>
+                    <td>{{ booking[4] }}</td>
+                    <td>₹{{ booking[5] }}</td>
+
+                    <td>
+
+                        <form action="/update-booking-status/{{ booking[0] }}" method="POST">
+
+                            <select name="status">
+
+                        <option value="Pending"
+                            {% if booking[6]=="Pending" %}selected{% endif %}>
+                            Pending
+                        </option>
+
+                        <option value="Confirmed"
+                            {% if booking[6]=="Confirmed" %}selected{% endif %}>
+                            Confirmed
+                        </option>
+
+                        <option value="Completed"
+                            {% if booking[6]=="Completed" %}selected{% endif %}>
+                            Completed
+                        </option>
+
+                        <option value="Cancelled"
+                            {% if booking[6]=="Cancelled" %}selected{% endif %}>
+                            Cancelled
+                        </option>
+
+                    </select>
+
+                    </td>
+
+                    <td>
+
+                        <button type="submit" class="btn-update">
+                    Update
+                </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>

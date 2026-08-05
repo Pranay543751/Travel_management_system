@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Users</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+
+            <h2>TravelEase</h2>
+
+            <ul>
+                <li><a href="/admin-dashboard">Dashboard</a></li>
+                <li><a href="/manage-users">Manage Users</a></li>
+                <li><a href="/manage-bookings">Manage Bookings</a></li>
+                <li><a href="/contact-messages">Contact Messages</a></li>
+                <li><a href="/admin-profile">Admin Profile</a></li>
+                <li><a href="/admin-logout">Logout</a></li>
+            </ul>
+
+        </aside>
+
+        <main class="booking-content">
+
+            <div class="booking-header">
+                <h1>Manage Users</h1>
+                <p>View and manage all registered users.</p>
+            </div>
+            <form method="GET">
+
+                <input type="text" name="search" placeholder="Search User">
+
+                <button>
+
+Search
+
+</button>
+
+            </form>
+
+            <div class="booking-table">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for user in users %}
+
+                        <tr>
+
+                            <td>{{ user[0] }}</td>
+                            <td>{{ user[1] }}</td>
+                            <td>{{ user[2] }}</td>
+                            <td>{{ user[3] }}</td>
+
+                            <td>
+
+                                <a href="/delete-user/{{ user[0] }}" class="cancel-btn" onclick="return confirm('Delete this user?')">
+
+                               Delete
+
+                            </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
