@@ -14,7 +14,7 @@
 
         <aside class="sidebar">
 
-            <h2>TravelEase</h2>
+            <h2>TravelHub</h2>
 
             <ul>
                 <li><a href="/admin-dashboard">Dashboard</a></li>
@@ -33,11 +33,11 @@
                 <h1>Manage Users</h1>
                 <p>View and manage all registered users.</p>
             </div>
-            <form method="GET">
+            <form method="GET" class="search-box">
 
-                <input type="text" name="search" placeholder="Search User">
+                <input type="text" name="search" value="{{ search }}" placeholder="Search User">
 
-                <button>
+                <button class="search-btn">
 
 Search
 
@@ -73,6 +73,11 @@ Search
                             <td>{{ user[3] }}</td>
 
                             <td>
+                                <a href="/edit-user/{{ user[0] }}" class="edit-btn">
+
+Edit
+
+</a>
 
                                 <a href="/delete-user/{{ user[0] }}" class="cancel-btn" onclick="return confirm('Delete this user?')">
 

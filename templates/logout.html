@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - TravelHub</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='logout.css') }}">
+</head>
+
+<body>
+
+    <div class="logout-container">
+
+        <div class="logout-card">
+
+            <div class="logout-icon">
+                🚪
+            </div>
+
+            <h1>Logout</h1>
+
+            <p>
+                Are you sure you want to logout from your TravelHub account?
+            </p>
+
+            <div class="logout-actions">
+
+                <a href="/dashboard" class="cancel-btn">
+                    Cancel
+                </a>
+
+                <a href="/logout-confirm" class="logout-btn">
+                    Yes, Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

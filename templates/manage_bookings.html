@@ -27,7 +27,7 @@
         <h2>Manage Bookings</h2>
         <form method="GET">
 
-            <input type="text" name="search" placeholder="Search Destination">
+            <input type="text" name="search" value="{{ request.args.get('search', '') }}" placeholder="Search Destination">
 
             <button>
 
@@ -100,6 +100,17 @@ Search
                 </button>
 
                         </form>
+
+                        <br>
+
+                        <a href="/edit-booking-admin/{{ booking[0] }}" class="edit-btn">
+Edit
+</a>
+
+                        <a href="/delete-booking-admin/{{ booking[0] }}" class="cancel-btn" onclick="return confirm('Delete this booking?')">
+Delete
+</a>
+
 
                     </td>
 

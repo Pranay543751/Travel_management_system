@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
 </head>
 
 <body>
@@ -16,14 +16,14 @@
         <!-- Sidebar -->
         <aside class="sidebar">
 
-            <h2>TravelEase</h2>
+            <h2>TravelHub</h2>
 
             <ul>
-                <li><a href="/dashboard">🏠 Dashboard</a></li>
-                <li><a href="/my-bookings">📖 My Bookings</a></li>
-                <li><a href="/destinations">🌍 Destinations</a></li>
-                <li><a href="/profile">👤 Profile</a></li>
-                <li><a href="/logout">🚪 Logout</a></li>
+                <li><a href="/dashboard"> Dashboard</a></li>
+                <li><a href="/my-booking"> My Bookings</a></li>
+                <li><a href="/destination"> Destinations</a></li>
+                <li><a href="/profile"> Profile</a></li>
+                <li><a href="/logout"> Logout</a></li>
             </ul>
 
         </aside>
@@ -45,56 +45,26 @@
 
                 <div class="profile-details">
 
-                    <h2>Pranay Zade</h2>
+                    <h2>{{ user[1] }}</h2>
 
-                    <div class="detail-box">
-                        <strong>Email:</strong>
-                        <span>pranay@email.com</span>
+                    <div class="profile-row">
+                        <span class="label">Name</span>
+                        <span class="value">{{ user[1] }}</span>
                     </div>
 
-                    <div class="detail-box">
-                        <strong>Phone:</strong>
-                        <span>+91 9876543210</span>
+                    <div class="profile-row">
+                        <span class="label">Email</span>
+                        <span class="value">{{ user[2] }}</span>
                     </div>
 
-                    <div class="detail-box">
-                        <strong>Location:</strong>
-                        <span>Nagpur, Maharashtra</span>
+                    <div class="profile-row">
+                        <span class="label">Phone</span>
+                        <span class="value">{{ user[3] }}</span>
                     </div>
-
-                    <div class="detail-box">
-                        <strong>Member Since:</strong>
-                        <span>2026</span>
-                    </div>
-
-                    <button class="edit-btn">
-                    Edit Profile
-                </button>
 
                 </div>
-
             </div>
 
-            <!-- Travel Stats -->
-
-            <div class="profile-stats">
-
-                <div class="profile-stat-card">
-                    <h2>12</h2>
-                    <p>Total Trips</p>
-                </div>
-
-                <div class="profile-stat-card">
-                    <h2>5</h2>
-                    <p>Countries Visited</p>
-                </div>
-
-                <div class="profile-stat-card">
-                    <h2>3</h2>
-                    <p>Upcoming Trips</p>
-                </div>
-
-            </div>
 
         </main>
 

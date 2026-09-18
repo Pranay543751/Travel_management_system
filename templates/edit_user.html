@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+
+            <h2>TravelHub</h2>
+
+            <ul>
+                <li><a href="/admin-dashboard">Dashboard</a></li>
+                <li><a href="/manage-users">Manage Users</a></li>
+                <li><a href="/manage-bookings">Manage Bookings</a></li>
+                <li><a href="/contact-messages">Contact Messages</a></li>
+                <li><a href="/admin-profile">Admin Profile</a></li>
+                <li><a href="/admin-logout">Logout</a></li>
+            </ul>
+
+        </aside>
+
+        <main class="profile-content">
+
+            <div class="form-container">
+
+                <h2>Edit User</h2>
+
+                <form method="POST">
+
+                    <label>Name</label>
+                    <input type="text" name="name" value="{{ user[1] }}" required>
+
+                    <label>Email</label>
+                    <input type="email" name="email" value="{{ user[2] }}" required>
+
+                    <label>Phone</label>
+                    <input type="text" name="phone" value="{{ user[3] }}" required>
+
+                    <button type="submit" class="btn-update">
+                    Update User
+                </button>
+
+                </form>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

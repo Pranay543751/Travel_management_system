@@ -4,87 +4,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <title>Dashboard - TravelHub</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
 </head>
 
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/destinations">Destination</a></li>
-            <li><a href="/packages">Packages</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/signup" class="signup-btn">Signup</a></li>
-        </ul>
-    </nav>
 
     <div class="dashboard-container">
+
+        <!-- ================= SIDEBAR ================= -->
+
         <aside class="sidebar">
-            <h2>TravelEase
-            </h2>
+
+            <h2>TravelHub</h2>
+
             <ul>
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/my_booking">My Bookings</a></li>
-                <li><a href="/destination">Destinations</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/logout">Logout</a></li>
+
+                <li>
+                    <a href="/dashboard">Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="/my_booking">My Bookings</a>
+                </li>
+
+                <li>
+                    <a href="/destination">Destinations</a>
+                </li>
+
+                <li>
+                    <a href="/profile"> Profile</a>
+                </li>
+
+                <li>
+                    <a href="/logout">Logout</a>
+                </li>
+
             </ul>
+
         </aside>
-        <main class="dashboard-container">
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <main class="dashboard-content">
+
+
+            <!-- Welcome Section -->
+
             <div class="dashboard-header">
+
                 <div>
-                    <h1> welcome Back ,{{ username}} 👋</h1>
+
+                    <h1>
+                        Welcome Back, {{ username }} 👋
                     </h1>
-                    <p>Manage your trips and bookings from your dashboard.</p>
-                </div>
-                <button class="new-booking-btn">+ New Booking</button>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h2>{{ total_trips }}
-                    </h2>
-                    <p>Total Trips
-                    </p>
-                </div>
-                <div class="stat-card">
-                    <h2>{{ upcoming }}
-                    </h2>
-                    <p>Upcoming Trips
+
+                    <p>
+                        Manage your trips and bookings from your dashboard.
                     </p>
 
+                </div>
+
+
+                <a href="/booking" class="new-booking-btn">
+                + New Booking
+            </a>
+
+            </div>
+
+
+
+            <!-- ================= STAT CARDS ================= -->
+
+            <div class="stats">
+
+                <div class="card">
+
+                    <h3>Total Trips</h3>
+
+                    <h2>
+                        {{ total_trips }}
+                    </h2>
 
                 </div>
-                <div class="stat-card">
-                    <h2>{{ completed }}
+
+
+                <div class="card">
+
+                    <h3>Upcoming Trips</h3>
+
+                    <h2>
+                        {{ upcoming_trips }}
                     </h2>
-                    <p>Completed Trips
-                    </p>
+
                 </div>
-                <div class="stat-card">
-                    <h2>₹1.2L
+
+
+                <div class="card">
+
+                    <h3>Completed Trips</h3>
+
+                    <h2>
+                        {{ completed_trips }}
                     </h2>
-                    <p>Total Spending
-                    </p>
+
                 </div>
+
+
+                <div class="card">
+
+                    <h3>Total Spending</h3>
+
+                    <h2>
+                        ₹{{ total_spending }}
+                    </h2>
+
+                </div>
+
             </div>
+
+
+
+            <!-- ================= RECENT BOOKINGS ================= -->
+
             <section class="recent-bookings">
 
                 <h2>Recent Bookings</h2>
+
 
                 <table>
 
                     <thead>
 
                         <tr>
+
                             <th>Destination</th>
+
                             <th>Date</th>
+
                             <th>Status</th>
+
                         </tr>
 
                     </thead>
+
 
                     <tbody>
 
@@ -92,11 +158,27 @@
 
                         <tr>
 
-                            <td>{{ booking[0] }}</td>
+                            <td>
+                                {{ booking[0] }}
+                            </td>
 
-                            <td>{{ booking[1] }}</td>
+                            <td>
+                                {{ booking[1] }}
+                            </td>
 
-                            <td>{{ booking[2] }}</td>
+                            <td>
+                                {{ booking[2] }}
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+
+                            <td colspan="3" class="no-bookings">
+                                No bookings found.
+                            </td>
 
                         </tr>
 
@@ -107,45 +189,12 @@
                 </table>
 
             </section>
+
+
         </main>
+
     </div>
-    <footer class="footer">
 
-        <div class="footer-container">
-
-            <div class="footer-section">
-                <h3>TravelEase</h3>
-                <p>
-                    Discover amazing destinations and create unforgettable journeys.
-                </p>
-            </div>
-
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/destinations">Destinations</a></li>
-                    <li><a href="/booking">Booking</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Contact</h3>
-
-                <p>📍 Nagpur, Maharashtra</p>
-                <p>📧 support@travelease.com</p>
-                <p>📞 +91 98765 43210</p>
-            </div>
-
-        </div>
-
-        <div class="footer-bottom">
-            <p>© 2026 TravelEase. All Rights Reserved.</p>
-        </div>
-
-    </footer>
 </body>
 
 </html>

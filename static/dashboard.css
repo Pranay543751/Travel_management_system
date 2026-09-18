@@ -1,0 +1,271 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #111827;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   MAIN LAYOUT
+========================================= */
+
+.dashboard-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: #111a2e;
+    padding: 35px 20px;
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    color: white;
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 18px;
+}
+
+.sidebar ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 15px 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background: #2563eb;
+    padding-left: 20px;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.dashboard-content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+    min-height: 100vh;
+    padding: 40px;
+    background: #f4f7fb;
+}
+
+
+/* =========================================
+   WELCOME HEADER
+========================================= */
+
+.dashboard-header {
+    width: 100%;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-header h1 {
+    font-size: 36px;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.dashboard-header p {
+    font-size: 18px;
+    color: #6b7280;
+}
+
+
+/* =========================================
+   NEW BOOKING BUTTON
+========================================= */
+
+.new-booking-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.new-booking-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   STAT CARDS
+========================================= */
+
+.stats {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    min-height: 160px;
+    padding: 25px;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    font-size: 18px;
+    color: #4b5563;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-size: 40px;
+    color: #2563eb;
+}
+
+
+/* =========================================
+   RECENT BOOKINGS
+========================================= */
+
+.recent-bookings {
+    width: 100%;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.recent-bookings h2 {
+    font-size: 30px;
+    color: #111827;
+    margin-bottom: 25px;
+}
+
+.recent-bookings table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent-bookings th {
+    background: #23477f;
+    color: white;
+    padding: 17px;
+    text-align: left;
+    font-size: 17px;
+}
+
+.recent-bookings td {
+    padding: 17px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 16px;
+}
+
+.recent-bookings tr:hover {
+    background: #f8fafc;
+}
+
+.no-bookings {
+    text-align: center;
+    color: #6b7280;
+    padding: 30px !important;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 750px) {
+    .sidebar {
+        width: 220px;
+    }
+    .dashboard-content {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+        padding: 20px;
+    }
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    .dashboard-container {
+        flex-direction: column;
+    }
+    .dashboard-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}

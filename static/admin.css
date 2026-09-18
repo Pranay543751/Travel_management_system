@@ -354,3 +354,379 @@ ADMIN PROFILE
 .profile-info p {
     font-size: 17px;
 }
+
+
+/* ==============================
+   Edit User Page
+============================== */
+
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1e293b;
+}
+
+.form-container label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #374151;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.form-container input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+}
+
+.btn-update {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-update:hover {
+    background: #1d4ed8;
+}
+
+.pending-card {
+    background: #fff8e1;
+    border-left: 6px solid orange;
+}
+
+.confirmed-card {
+    background: #e8f5e9;
+    border-left: 6px solid green;
+}
+
+.cancelled-card {
+    background: #ffebee;
+    border-left: 6px solid red;
+}
+
+.pending-card h2 {
+    color: orange;
+}
+
+.confirmed-card h2 {
+    color: green;
+}
+
+.cancelled-card h2 {
+    color: red;
+}
+
+.export-btn {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 12px 22px;
+    background: #16a34a;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.export-btn:hover {
+    background: #15803d;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* Sidebar */
+
+.sidebar {
+    width: 260px;
+    background: #1e293b;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding: 30px 20px;
+}
+
+
+/* Main Content */
+
+.booking-content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.booking-table {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.booking-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.booking-table th {
+    background: #2563eb;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.booking-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.booking-content form {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.booking-content input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.booking-content button {
+    background: #0f766e;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.form-box {
+    width: 500px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.form-box button {
+    width: 100%;
+    padding: 12px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-box button:hover {
+    background: #1d4ed8;
+}
+
+.charts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.chart-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+}
+
+.chart-card h3 {
+    margin-bottom: 20px;
+}
+
+canvas {
+    width: 100% !important;
+    height: 320px !important;
+}
+
+
+/* =========================
+   ADMIN PROFILE
+========================= */
+
+.admin-profile-content {
+    margin-left: 280px;
+    padding: 50px;
+    min-height: 100vh;
+    background: #f4f7fb;
+    box-sizing: border-box;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.profile-header h1 {
+    margin: 10px 0;
+    font-size: 38px;
+    color: #111827;
+}
+
+.profile-header p {
+    color: #64748b;
+    font-size: 17px;
+}
+
+.profile-icon {
+    font-size: 45px;
+}
+
+.admin-profile-card {
+    max-width: 850px;
+    margin: auto;
+    background: white;
+    border-radius: 20px;
+    padding: 45px;
+    display: flex;
+    align-items: flex-start;
+    gap: 45px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.profile-avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+    flex-shrink: 0;
+}
+
+.profile-details {
+    flex: 1;
+}
+
+.profile-details h2 {
+    margin: 0 0 30px;
+    font-size: 32px;
+    color: #111827;
+}
+
+.profile-row {
+    display: flex;
+    align-items: center;
+    padding: 17px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.profile-row .label {
+    width: 120px;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.profile-row .value {
+    color: #374151;
+    font-size: 17px;
+}
+
+.admin-badge {
+    background: #dbeafe;
+    color: #2563eb;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.profile-actions {
+    margin-top: 30px;
+}
+
+.password-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.password-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+    .admin-profile-content {
+        margin-left: 0;
+        padding: 25px;
+    }
+    .admin-profile-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    .profile-row {
+        text-align: left;
+    }
+    .profile-details {
+        width: 100%;
+    }
+}

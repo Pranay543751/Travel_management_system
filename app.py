@@ -1,5 +1,13 @@
-import email
+from flask import send_file
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import inch
+import os
 
+import email
+import csv
+from flask import Response
 from flask import Flask, render_template, request, redirect, session
 from flask_mysqldb import MySQL
 
@@ -190,33 +198,63 @@ def dashboard():
 
 
     return render_template("dashboard.html", username=session['user_name'],total_trips=total_trips,
-                           upcoming=upcoming,
-                           completed=completed,
+                           upcoming_trips=upcoming,
+                           completed_trips=completed,
                            recent_bookings=recent_bookings)
 
 
 @app.route("/my_booking")
 def my_booking():
+
     if "user_id" not in session:
         return redirect("/login")
-    
-    cur=mysql.connection.cursor()
-    cur.execute("""
-                SELECT id,destination,travel_date,travelers,package_type,amount,status
-                FROM bookings
-                WHERE user_id=%s
-                ORDER BY id DESC""",(session["user_id"],))
-    
-    booking=cur.fetchall()
-    cur.close()
-    
-    return render_template("my_booking.html", bookings=booking)
 
+    user_id = session["user_id"]
+
+    cur = mysql.connection.cursor()
+
+    cur.execute("""
+        SELECT id,user_id,destination, travel_date, travelers,
+               package_type, amount, status
+        FROM bookings
+        WHERE user_id=%s
+        ORDER BY id DESC
+    """, (user_id,))
+
+    bookings = cur.fetchall()
+
+    cur.close()
+
+    return render_template(
+        "my_booking.html",
+        bookings=bookings
+    )
 
 
 @app.route("/profile")
 def profile():
-   return render_template("profile.html")
+
+    if "user_id" not in session:
+        return redirect("/login")
+
+    cur = mysql.connection.cursor()
+
+    cur.execute(
+        "SELECT * FROM users WHERE id=%s",
+        (session["user_id"],)
+    )
+
+    user = cur.fetchone()
+
+    cur.close()
+
+    if not user:
+        return "User not found"
+
+    return render_template(
+        "profile.html",
+        user=user
+    )
 
 
 
@@ -270,24 +308,7 @@ def contact_messages():
         messages=messages
     )
 
-@app.route("/delete-message/<int:id>")
-def delete_message(id):
 
-    if "admin_id" not in session:
-        return redirect("/admin-login")
-
-    cur = mysql.connection.cursor()
-
-    cur.execute(
-        "DELETE FROM contact_messages WHERE id=%s",
-        (id,)
-    )
-
-    mysql.connection.commit()
-
-    cur.close()
-
-    return redirect("/contact-messages")
 
 
 @app.route("/about")
@@ -419,48 +440,86 @@ def admin_login():
 @app.route("/admin-dashboard")
 def admin_dashboard():
 
-    print(session)
-
     if "admin_id" not in session:
         return redirect("/admin-login")
 
     cur = mysql.connection.cursor()
 
+    # Total Users
     cur.execute("SELECT COUNT(*) FROM users")
     total_users = cur.fetchone()[0]
 
+    # Total Bookings
     cur.execute("SELECT COUNT(*) FROM bookings")
     total_bookings = cur.fetchone()[0]
 
-    cur.execute("SELECT SUM(amount) FROM bookings")
+    # Total Revenue
+    cur.execute("SELECT IFNULL(SUM(amount),0) FROM bookings WHERE status='Completed'")
     revenue = cur.fetchone()[0]
 
-    if revenue is None:
-        revenue = 0
+    # Pending Bookings
+    cur.execute("SELECT COUNT(*) FROM bookings WHERE status='Pending'")
+    pending = cur.fetchone()[0]
 
+    # Confirmed Bookings
+    cur.execute("SELECT COUNT(*) FROM bookings WHERE status='Confirmed'")
+    confirmed = cur.fetchone()[0]
+
+    # Cancelled Bookings
+    cur.execute("SELECT COUNT(*) FROM bookings WHERE status='Cancelled'")
+    cancelled = cur.fetchone()[0]
+    cur.execute("SELECT COUNT(*) FROM bookings WHERE status='Pending'")
+    pending = cur.fetchone()[0]
+
+    cur.execute("SELECT COUNT(*) FROM bookings WHERE status='Confirmed'")
+    confirmed = cur.fetchone()[0]
+
+    cur.execute("SELECT COUNT(*) FROM bookings WHERE status='Completed'")
+    completed = cur.fetchone()[0]
+
+    cur.execute("SELECT COUNT(*) FROM bookings WHERE status='Cancelled'")
+    cancelled = cur.fetchone()[0]
+    # Recent Bookings
+    cur.execute("""
+        SELECT id,destination,travel_date,status
+        FROM bookings
+        ORDER BY id DESC
+        LIMIT 5
+    """)
+    recent_bookings = cur.fetchall()
+    monthly_revenue = []
+
+    for month in range(1,13):
+
+        cur.execute("""
+
+        SELECT IFNULL(SUM(amount),0)
+
+        FROM bookings
+
+        WHERE MONTH(travel_date)=%s
+
+        """,(month,))
+
+    monthly_revenue.append(cur.fetchone()[0])
+
+    cur.close()
     cur.execute("SELECT COUNT(*) FROM contact_messages")
     total_messages = cur.fetchone()[0]
-    
-    cur.execute("""
-              SELECT id,
-                destination,
-                 travel_date,
-                status
-                FROM bookings
-                ORDER BY id DESC
-                LIMIT 5
-                """)
-
-    recent_bookings = cur.fetchall()
-    cur.close()
-
     return render_template(
         "admin_dashboard.html",
         total_users=total_users,
-        total_bookings=total_bookings,
-        revenue=revenue,
-        total_messages=total_messages,
-        recent_bookings=recent_bookings
+    total_bookings=total_bookings,
+    revenue=revenue,
+    total_messages=total_messages,
+    recent_bookings=recent_bookings,
+
+    pending=pending,
+    confirmed=confirmed,
+    completed=completed,
+    cancelled=cancelled,
+
+    monthly_revenue=monthly_revenue
     )
 
 @app.route("/manage-users")
@@ -486,7 +545,8 @@ def manage_users():
 
     return render_template(
         "manage_users.html",
-        users=users
+        users=users,
+        search=search
     )
 
 
@@ -504,6 +564,50 @@ def delete_user(user_id):
     cur.close()
 
     return redirect("/manage-users")
+
+@app.route("/edit-user/<int:user_id>", methods=["GET","POST"])
+def edit_user(user_id):
+
+    if "admin_id" not in session:
+        return redirect("/admin-login")
+
+    cur = mysql.connection.cursor()
+
+    if request.method=="POST":
+
+        name=request.form["name"]
+        email=request.form["email"]
+        phone=request.form["phone"]
+
+        cur.execute("""
+        UPDATE users
+        SET
+        name=%s,
+        email=%s,
+        phone=%s
+        WHERE id=%s
+        """,
+        (name,email,phone,user_id))
+
+        mysql.connection.commit()
+
+        cur.close()
+
+        return redirect("/manage-users")
+
+    cur.execute(
+        "SELECT * FROM users WHERE id=%s",
+        (user_id,)
+    )
+
+    user=cur.fetchone()
+
+    cur.close()
+
+    return render_template(
+        "edit_user.html",
+        user=user
+    )
 
 @app.route("/delete-message/<int:id>")
 def delete_message(id):
@@ -565,50 +669,10 @@ def manage_bookings():
         bookings=bookings
     )
 
-@app.route("/change-admin-password",methods=["GET","POST"])
-def change_admin_password():
 
-    if "admin_id" not in session:
-        return redirect("/admin-login")
 
-    if request.method=="POST":
-
-        old=request.form["old_password"]
-        new=request.form["new_password"]
-
-        cur=mysql.connection.cursor()
-
-        cur.execute("""
-        SELECT *
-        FROM admin
-        WHERE id=%s
-        AND password=%s
-        """,
-        (session["admin_id"],old))
-
-        admin=cur.fetchone()
-
-        if admin:
-
-            cur.execute("""
-            UPDATE admin
-            SET password=%s
-            WHERE id=%s
-            """,
-            (new,session["admin_id"]))
-
-            mysql.connection.commit()
-
-            cur.close()
-
-            return "Password Updated Successfully"
-
-        return "Old Password Incorrect"
-
-    return render_template("change_password.html")
-
-@app.route("/admin-profile")
-def admin_profile():
+@app.route("/delete-booking-admin/<int:id>")
+def delete_booking_admin(id):
 
     if "admin_id" not in session:
         return redirect("/admin-login")
@@ -616,18 +680,245 @@ def admin_profile():
     cur = mysql.connection.cursor()
 
     cur.execute(
-        "SELECT * FROM admin WHERE id=%s",
-        (session["admin_id"],)
+        "DELETE FROM bookings WHERE id=%s",
+        (id,)
     )
 
-    admin = cur.fetchone()
+    mysql.connection.commit()
+
+    cur.close()
+
+    return redirect("/manage-bookings")
+
+@app.route("/edit-booking-admin/<int:id>", methods=["GET","POST"])
+def edit_booking_admin(id):
+
+    if "admin_id" not in session:
+        return redirect("/admin-login")
+
+    cur = mysql.connection.cursor()
+
+    if request.method=="POST":
+
+        destination=request.form["destination"]
+        date=request.form["travel_date"]
+        travelers=request.form["travelers"]
+        amount=request.form["amount"]
+        status=request.form["status"]
+
+        cur.execute("""
+        UPDATE bookings
+        SET
+        destination=%s,
+        travel_date=%s,
+        travelers=%s,
+        amount=%s,
+        status=%s
+        WHERE id=%s
+        """,
+        (
+            destination,
+            date,
+            travelers,
+            amount,
+            status,
+            id
+        ))
+
+        mysql.connection.commit()
+
+        cur.close()
+
+        return redirect("/manage-bookings")
+
+    cur.execute(
+        "SELECT * FROM bookings WHERE id=%s",
+        (id,)
+    )
+
+    booking=cur.fetchone()
 
     cur.close()
 
     return render_template(
-        "admin_profile.html",
-        admin=admin
+        "edit_booking_admin.html",
+        booking=booking
     )
+
+@app.route("/export-bookings")
+def export_bookings():
+
+    if "admin_id" not in session:
+        return redirect("/admin-login")
+
+    cur = mysql.connection.cursor()
+
+    cur.execute("""
+        SELECT
+        id,
+        user_id,
+        destination,
+        travel_date,
+        travelers,
+        amount,
+        status
+        FROM bookings
+    """)
+
+    bookings = cur.fetchall()
+
+    cur.close()
+
+    def generate():
+
+        data = csv.writer(open("dummy.csv", "w", newline=""))
+
+        yield "ID,User ID,Destination,Travel Date,Travelers,Amount,Status\n"
+
+        for booking in bookings:
+
+            yield f"{booking[0]},{booking[1]},{booking[2]},{booking[3]},{booking[4]},{booking[5]},{booking[6]}\n"
+
+    return Response(
+        generate(),
+        mimetype="text/csv",
+        headers={
+            "Content-Disposition":
+            "attachment; filename=bookings.csv"
+        }
+    )
+
+
+@app.route("/change-admin-password", methods=["GET", "POST"])
+def change_admin_password():
+
+    if "admin_id" not in session:
+        return redirect("/admin-login")
+
+    if request.method == "POST":
+
+        current_password = request.form["current_password"]
+        new_password = request.form["new_password"]
+        confirm_password = request.form["confirm_password"]
+
+        cur = mysql.connection.cursor()
+
+        cur.execute(
+            "SELECT * FROM admin WHERE id=%s AND password=%s",
+            (session["admin_id"], current_password)
+        )
+
+        admin = cur.fetchone()
+
+        if not admin:
+            cur.close()
+            return "Current Password is Incorrect"
+
+        if new_password != confirm_password:
+            cur.close()
+            return "New Password and Confirm Password do not match"
+
+        cur.execute(
+            "UPDATE admin SET password=%s WHERE id=%s",
+            (new_password, session["admin_id"])
+        )
+
+        mysql.connection.commit()
+        cur.close()
+
+        return redirect("/admin-profile")
+
+    return render_template("change_admin_password.html")
+
+@app.route("/download-invoice/<int:booking_id>")
+def download_invoice(booking_id):
+
+    if "user_id" not in session:
+        return redirect("/login")
+
+    cur = mysql.connection.cursor()
+
+    cur.execute("""
+        SELECT users.name,
+               users.email,
+               bookings.destination,
+               bookings.travel_date,
+               bookings.travelers,
+               bookings.amount,
+               bookings.status
+        FROM bookings
+        JOIN users
+        ON bookings.user_id = users.id
+        WHERE bookings.id=%s
+    """, (booking_id,))
+
+    booking = cur.fetchone()
+    cur.close()
+
+    if not booking:
+        return "Booking Not Found"
+
+    filename = f"invoice_{booking_id}.pdf"
+
+    pdf = SimpleDocTemplate(filename)
+
+    styles = getSampleStyleSheet()
+
+    elements = []
+
+    elements.append(
+        Paragraph("<b><font size=18>TravelHub Invoice</font></b>", styles["Title"])
+    )
+
+    elements.append(
+        Paragraph(f"<b>Invoice No :</b> INV-{booking_id}", styles["Normal"])
+    )
+
+    elements.append(
+        Paragraph("<br/>", styles["Normal"])
+    )
+
+    data = [
+        ["Customer Name", booking[0]],
+        ["Email", booking[1]],
+        ["Destination", booking[2]],
+        ["Travel Date", str(booking[3])],
+        ["Travelers", booking[4]],
+        ["Amount", f"₹ {booking[5]}"],
+        ["Status", booking[6]],
+    ]
+
+    table = Table(data, colWidths=[2.5 * inch, 3.5 * inch])
+
+    table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
+        ("GRID", (0, 0), (-1, -1), 1, colors.black),
+        ("BACKGROUND", (0, 0), (0, -1), colors.lightblue),
+        ("TEXTCOLOR", (0, 0), (-1, -1), colors.black),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
+    ]))
+
+    elements.append(table)
+
+    pdf.build(elements)
+
+    return send_file(
+        filename,
+        as_attachment=True
+    )
+
+@app.route("/logout")
+def logout():
+    return render_template("logout.html")
+
+
+@app.route("/logout-confirm")
+def logout_confirm():
+
+    session.clear()
+
+    return redirect("/login")
+
 
 if __name__=="__main__":
     app.run(debug=True)

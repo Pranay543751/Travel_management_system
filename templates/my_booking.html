@@ -4,91 +4,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Bookings</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>My Bookings - TravelHub</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='my_booking.css') }}">
 </head>
 
 <body>
 
-    <div class="dashboard-container">
+    <div class="page-container">
 
         <!-- Sidebar -->
+
         <aside class="sidebar">
-            <h2>TravelEase</h2>
+
+            <h2>TravelHub</h2>
 
             <ul>
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/my-bookings">My Bookings</a></li>
-                <li><a href="/destination">Destinations</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/logout">Logout</a></li>
+
+                <li>
+                    <a href="/dashboard">Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="/my_booking" class="active">
+                    My Bookings
+                </a>
+                </li>
+
+                <li>
+                    <a href="/destination">
+                    Destinations
+                </a>
+                </li>
+
+                <li>
+                    <a href="/profile">
+                    Profile
+                </a>
+                </li>
+
+                <li>
+                    <a href="/logout">
+                    Logout
+                </a>
+                </li>
+
             </ul>
+
         </aside>
 
+
         <!-- Main Content -->
-        <main class="booking-content">
 
-            <div class="booking-header">
-                <h1>My Bookings</h1>
-                <p>View and manage all your travel bookings.</p>
+        <main class="main-content">
+
+            <div class="page-header">
+
+                <div>
+                    <h1>My Bookings</h1>
+
+                    <p>
+                        View and manage all your travel bookings.
+                    </p>
+                </div>
+
+                <a href="/booking" class="new-booking-btn">
+                + New Booking
+            </a>
+
             </div>
 
-            <div class="search-box">
-                <input type="text" placeholder="Search Destination...">
-                <button>Search</button>
-            </div>
 
-            <div class="booking-table">
+            <!-- Search -->
 
-                <table>
+            <form class="search-box" method="GET">
 
-                    <thead>
-                        <tr>
-                            <th>Destination</th>
-                            <th>Date</th>
-                            <th>Travelers</th>
-                            <th>Package</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
+                <input type="text" name="search" placeholder="Search destination..." value="{{ request.args.get('search', '') }}">
 
-                    <tbody>
+                <button type="submit">
+                Search
+            </button>
 
-                        {% for booking in bookings %}
+            </form>
 
-                        <tr>
 
-                            <td>{{ booking[1] }}</td>
-                            <td>{{ booking[2] }}</td>
-                            <td>{{ booking[3] }}</td>
-                            <td>{{ booking[4] }}</td>
-                            <td>₹{{ booking[5] }}</td>
-                            <td>{{ booking[6] }}</td>
+            <!-- Bookings -->
 
-                            <td>
+            <div class="booking-card">
 
-                                <a href="/edit-booking/{{ booking[0] }}" class="edit-btn">
-                                Edit
-                            </a> {% if booking[6] != "Cancelled" %}
+                <div class="table-wrapper">
 
-                                <a href="/cancel-booking/{{ booking[0] }}" class="cancel-btn">
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Destination</th>
+
+                                <th>Travel Date</th>
+
+                                <th>Travelers</th>
+
+                                <th>Package</th>
+
+                                <th>Amount</th>
+
+                                <th>Status</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for booking in bookings %}
+
+                            <tr>
+
+                                <td>
+                                    {{ booking[0] }}
+                                </td>
+
+                                <td class="destination">
+                                    {{ booking[2] }}
+                                </td>
+
+                                <td>
+                                    {{ booking[3] }}
+                                </td>
+
+                                <td>
+                                    {{ booking[4] }}
+                                </td>
+
+                                <td>
+                                    {{ booking[5] if booking|length > 5 else '-' }}
+                                </td>
+
+                                <td class="amount">
+                                    ₹{{ booking[6] }}
+                                </td>
+
+                                <td>
+
+                                    <span class="status
+                                    {% if booking[7] == 'Confirmed' %}
+                                        confirmed
+                                    {% elif booking[7] == 'Completed' %}
+                                        completed
+                                    {% elif booking[7] == 'Cancelled' %}
+                                        cancelled
+                                    {% else %}
+                                        pending
+                                    {% endif %}
+                                ">
+
+                                    {{ booking[7] }}
+
+                                </span>
+
+                                </td>
+
+                                <td>
+
+                                    {% if booking[7] != 'Cancelled' %}
+
+                                    <a href="/cancel-booking/{{ booking[0] }}" class="cancel-btn" onclick="return confirm('Cancel this booking?')">
                                     Cancel
                                 </a> {% else %}
 
-                                <span class="cancelled">Cancelled</span> {% endif %}
+                                    <span class="cancelled-text">
+                                    Cancelled
+                                </span> {% endif %}
 
-                            </td>
+                                </td>
 
-                        </tr>
+                            </tr>
 
-                        {% endfor %}
+                            {% else %}
 
-                    </tbody>
+                            <tr>
 
-                </table>
+                                <td colspan="8" class="no-bookings">
+                                    No bookings found.
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </div>
 

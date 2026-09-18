@@ -1,0 +1,256 @@
+/* ================================
+   RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #111827;
+}
+
+
+/* ================================
+   MAIN LAYOUT
+================================ */
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* ================================
+   SIDEBAR
+================================ */
+
+.sidebar {
+    width: 270px;
+    min-height: 100vh;
+    background: #111a33;
+    color: white;
+    padding: 35px 22px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar h2 {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 60px;
+    letter-spacing: -1px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 12px;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 16px 18px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background: #24345f;
+    transform: translateX(4px);
+}
+
+.sidebar ul li a.active {
+    background: #2864e6;
+}
+
+
+/* ================================
+   PROFILE CONTENT
+================================ */
+
+.profile-content {
+    margin-left: 270px;
+    width: calc(100% - 270px);
+    min-height: 100vh;
+    padding: 55px 60px;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.profile-header {
+    margin-bottom: 35px;
+}
+
+.profile-header h1 {
+    font-size: 38px;
+    font-weight: 700;
+    color: #111a33;
+    margin-bottom: 10px;
+}
+
+.profile-header p {
+    font-size: 17px;
+    color: #6b7280;
+}
+
+
+/* ================================
+   PROFILE CARD
+================================ */
+
+.profile-card {
+    width: 100%;
+    max-width: 1000px;
+    background: white;
+    border-radius: 20px;
+    padding: 45px;
+    box-shadow: 0 8px 30px rgba(17, 26, 51, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+
+/* ================================
+   AVATAR
+================================ */
+
+.profile-avatar {
+    width: 130px;
+    height: 130px;
+    min-width: 130px;
+    border-radius: 50%;
+    background: #eaf0ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 65px;
+}
+
+
+/* ================================
+   PROFILE DETAILS
+================================ */
+
+.profile-details {
+    flex: 1;
+}
+
+.profile-details h2 {
+    font-size: 32px;
+    color: #111a33;
+    margin-bottom: 30px;
+}
+
+
+/* ================================
+   PROFILE ROW
+================================ */
+
+.profile-row {
+    display: flex;
+    align-items: center;
+    padding: 17px 0;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.profile-row:last-child {
+    border-bottom: none;
+}
+
+.profile-row .label {
+    width: 120px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #2864e6;
+}
+
+.profile-row .value {
+    font-size: 17px;
+    color: #374151;
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+.profile-actions {
+    margin-top: 30px;
+}
+
+.edit-profile-btn {
+    display: inline-block;
+    background: #2864e6;
+    color: white;
+    text-decoration: none;
+    padding: 13px 25px;
+    border-radius: 9px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+    background: #174fc4;
+    transform: translateY(-2px);
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+    .sidebar {
+        width: 220px;
+    }
+    .profile-content {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+        padding: 35px;
+    }
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profile-row {
+        text-align: left;
+    }
+}
+
+@media (max-width: 650px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+    }
+    .dashboard-container {
+        flex-direction: column;
+    }
+    .profile-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 25px;
+    }
+    .profile-card {
+        padding: 30px 20px;
+    }
+    .profile-header h1 {
+        font-size: 30px;
+    }
+}

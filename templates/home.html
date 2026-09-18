@@ -9,34 +9,23 @@
 </head>
 
 <body>
-    <div class="logo">TravelHub
-    </div>
     <nav class="navbar">
-        <ul>
-            <li>
-                <a href="/home">Home</a>
-            </li>
-            <li>
-                <a href="/destination">Destination</a>
-            </li>
-            <li>
-                <a href="/packages">Packages</a>
-            </li>
-            <li>
-                <a href="/about">About</a>
-            </li>
-            <li>
-                <a href="/contact">Contact</a>
-            </li>
-            <li>
-                <a href="/login">Login</a>
-            </li>
-            <li>
-                <a href="/signup" class="signup-btn">Signup</a>
-            </li>
-        </ul>
-    </nav>
 
+        <div class="logo">
+            TravelHub
+        </div>
+
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/destination">Destination</a></li>
+            <li><a href="/packages">Packages</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup" class="signup-btn">Signup</a></li>
+        </ul>
+
+    </nav>
     <section class="hero">
         <div class="hero-head">
             <h2>Discover Your Next Adventure
@@ -84,7 +73,9 @@
                     </h3>
                     <p class="price ">Starting Form ₹9,999</p>
                     <p class="rating ">⭐⭐⭐⭐⭐(4.8)</p>
-                    <button>Book Now </button>
+                    <a href="{{ url_for('booking') }}" class="book-now-btn">
+    Book Now
+</a>
                 </div>
             </div>
             <div class="card ">
@@ -94,7 +85,9 @@
                     </h3>
                     <p class="price ">Starting Form ₹30,999</p>
                     <p class="rating ">⭐⭐⭐⭐⭐(4.9)</p>
-                    <button>Book Now </button>
+                    <a href="{{ url_for('booking') }}" class="book-now-btn">
+    Book Now
+</a>
                 </div>
             </div>
             <div class="card ">
@@ -104,7 +97,9 @@
                     </h3>
                     <p class="price ">Starting Form ₹76,999</p>
                     <p class="rating ">⭐⭐⭐⭐⭐(4.5)</p>
-                    <button>Book Now </button>
+                    <a href="{{ url_for('booking') }}" class="book-now-btn">
+    Book Now
+</a>
                 </div>
             </div>
             <div class="card ">
@@ -114,7 +109,9 @@
                     </h3>
                     <p class="price ">Starting Form ₹39,999</p>
                     <p class="rating ">⭐⭐⭐⭐⭐(4.5)</p>
-                    <button>Book Now </button>
+                    <a href="{{ url_for('booking') }}" class="book-now-btn">
+    Book Now
+</a>
                 </div>
             </div>
             <div class="card ">
@@ -124,7 +121,9 @@
                     </h3>
                     <p class="price ">Starting Form ₹50,999</p>
                     <p class="rating ">⭐⭐⭐⭐⭐(4.8)</p>
-                    <button>Book Now </button>
+                    <a href="{{ url_for('booking') }}" class="book-now-btn">
+    Book Now
+</a>
                 </div>
             </div>
             <div class="card ">
@@ -134,7 +133,9 @@
                     </h3>
                     <p class="price ">Starting Form ₹66,999</p>
                     <p class="rating ">⭐⭐⭐⭐⭐(4.7)</p>
-                    <button>Book Now </button>
+                    <a href="{{ url_for('booking') }}" class="book-now-btn">
+    Book Now
+</a>
                 </div>
             </div>
         </div>
@@ -245,16 +246,16 @@
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="/ ">Home</a></li>
-                    <li><a href="/destination ">Destination</a></li>
-                    <li><a href="/booking ">Book Trip</a></li>
-                    <li><a href="/contact ">Contact</a></li>
+                    <li><a href="#destination ">Destination</a></li>
+                    <li><a href="#booking ">Book Trip</a></li>
+                    <li><a href="#contact ">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section ">
                 <h3>Contact Us</h3>
                 <p>📍 Nagpur, Maharashtra</p>
-                <p>📧 support@name.com</p>
-                <p>📞 +91 98765 43210</p>
+                <p>📧 support@TravelHub.com</p>
+                <p>📞 +91 90216 56194</p>
             </div>
 
             <!-- Social Media -->

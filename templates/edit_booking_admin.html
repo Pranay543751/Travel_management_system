@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Edit Booking</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+
+</head>
+
+<body>
+
+    <div class="form-container">
+
+        <h2>Edit Booking</h2>
+
+        <form method="POST">
+
+            <label>Destination</label>
+
+            <input type="text" name="destination" value="{{ booking[2] }}" required>
+
+            <label>Travel Date</label>
+
+            <input type="date" name="travel_date" value="{{ booking[3] }}" required>
+
+            <label>Travelers</label>
+
+            <input type="number" name="travelers" value="{{ booking[4] }}" required>
+
+            <label>Amount</label>
+
+            <input type="number" name="amount" value="{{ booking[5] }}" required>
+
+            <label>Status</label>
+
+            <select name="status">
+
+<option value="Pending">Pending</option>
+
+<option value="Confirmed">Confirmed</option>
+
+<option value="Completed">Completed</option>
+
+<option value="Cancelled">Cancelled</option>
+
+</select>
+
+            <br><br>
+
+            <button class="btn-update">
+
+Update Booking
+
+</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

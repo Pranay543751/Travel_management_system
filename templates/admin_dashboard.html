@@ -7,6 +7,8 @@
     <title>Admin Dashboard</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -14,31 +16,22 @@
     <div class="dashboard-container">
 
         <!-- Sidebar -->
-
         <aside class="sidebar">
 
             <h2>TravelHub</h2>
 
             <ul>
-
                 <li><a href="/admin-dashboard">Dashboard</a></li>
-
                 <li><a href="/manage-users">Manage Users</a></li>
-
                 <li><a href="/manage-bookings">Manage Bookings</a></li>
-
                 <li><a href="/contact-messages">Contact Messages</a></li>
-
                 <li><a href="/admin-profile">Admin Profile</a></li>
-
                 <li><a href="/admin-logout">Logout</a></li>
-
             </ul>
 
         </aside>
 
         <!-- Main -->
-
         <main class="dashboard-content">
 
             <div class="dashboard-header">
@@ -76,7 +69,50 @@
                     <h2>{{ total_messages }}</h2>
                 </div>
 
+                <div class="card pending-card">
+                    <h3>Pending</h3>
+                    <h2>{{ pending }}</h2>
+                </div>
+
+                <div class="card confirmed-card">
+                    <h3>Confirmed</h3>
+                    <h2>{{ confirmed }}</h2>
+                </div>
+
+                <div class="card cancelled-card">
+                    <h3>Cancelled</h3>
+                    <h2>{{ cancelled }}</h2>
+                </div>
+
             </div>
+
+            <br>
+
+            <a href="/export-bookings" class="export-btn">
+            📥 Export Bookings CSV
+        </a>
+            <input type="hidden" id="pending" value="{{ pending }}">
+            <input type="hidden" id="confirmed" value="{{ confirmed }}">
+            <input type="hidden" id="completed" value="{{ completed }}">
+            <input type="hidden" id="cancelled" value="{{ cancelled }}">
+            <input type="hidden" id="monthlyRevenue" value='{{ monthly_revenue | tojson }}'>
+            <!-- Charts -->
+
+            <div class="charts">
+
+                <div class="chart-card">
+                    <h3>Booking Status</h3>
+                    <canvas id="statusChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Monthly Revenue</h3>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+
+            </div>
+
+            <br><br>
 
             <!-- Recent Bookings -->
 
@@ -121,6 +157,12 @@
         </main>
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+
+
 
 </body>
 

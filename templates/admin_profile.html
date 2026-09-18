@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Admin Profile</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
@@ -20,51 +21,145 @@
 
             <ul>
 
-                <li><a href="/admin-dashboard">Dashboard</a></li>
+                <li>
+                    <a href="/admin-dashboard">
+                        Dashboard
+                    </a>
+                </li>
 
-                <li><a href="/manage-users">Manage Users</a></li>
+                <li>
+                    <a href="/manage-users">
+                        Manage Users
+                    </a>
+                </li>
 
-                <li><a href="/manage-bookings">Manage Bookings</a></li>
+                <li>
+                    <a href="/manage-bookings">
+                        Manage Bookings
+                    </a>
+                </li>
 
-                <li><a href="/contact-messages">Contact Messages</a></li>
+                <li>
+                    <a href="/contact-messages">
+                        Contact Messages
+                    </a>
+                </li>
 
-                <li><a href="/admin-profile">Admin Profile</a></li>
 
-                <li><a href="/admin-logout">Logout</a></li>
+
+                <li>
+                    <a href="/admin-logout">
+                        Logout
+                    </a>
+                </li>
 
             </ul>
 
         </aside>
 
-        <!-- Main -->
 
-        <main class="profile-content">
+        <!-- Main Content -->
+        <main class="admin-profile-content">
 
-            <div class="profile-card">
+            <!-- Header -->
+            <div class="profile-header">
 
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="profile-img">
-
-                <h2>{{ admin[1] }}</h2>
-
-                <p>Administrator</p>
-
-                <hr>
-
-                <div class="profile-info">
-
-                    <h3>Name</h3>
-                    <p>{{ admin[1] }}</p>
-
-                    <h3>Email</h3>
-                    <p>{{ admin[2] }}</p>
-
+                <div class="profile-icon">
+                    👤
                 </div>
 
-                <br>
+                <h1>Admin Profile</h1>
 
-                <a href="/change-admin-password" class="edit-btn">
-               Change Password
-            </a>
+                <p>
+                    Manage your administrator account information.
+                </p>
+
+            </div>
+
+
+            <!-- Profile Card -->
+            <div class="admin-profile-card">
+
+                <!-- Avatar -->
+                <div class="profile-avatar">
+                    👤
+                </div>
+
+
+                <!-- Details -->
+                <div class="profile-details">
+
+                    <h2>
+                        {{ admin[1] }}
+                    </h2>
+
+
+                    <!-- Name -->
+                    <div class="profile-row">
+
+                        <span class="label">
+                            Name
+                        </span>
+
+                        <span class="value">
+                            {{ admin[1] }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="profile-row">
+
+                        <span class="label">
+                            Email
+                        </span>
+
+                        <span class="value">
+                            {{ admin[2] }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- Phone -->
+                    <div class="profile-row">
+
+                        <span class="label">
+                            Phone
+                        </span>
+
+                        <span class="value">
+                            {{ admin[3] }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- Role -->
+                    <div class="profile-row">
+
+                        <span class="label">
+                            Role
+                        </span>
+
+                        <span class="admin-badge">
+                            Administrator
+                        </span>
+
+                    </div>
+
+
+                    <!-- Actions -->
+                    <div class="profile-actions">
+
+                        <a href="/change-admin-password" class="password-btn">
+                            🔐 Change Password
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
 
