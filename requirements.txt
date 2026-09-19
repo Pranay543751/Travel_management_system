@@ -1,4 +1,4 @@
 Flask
 Flask-MySQLdb
-mysqlclient
-gunicorn
+mysqlclient==2.2.8
+reportlab
